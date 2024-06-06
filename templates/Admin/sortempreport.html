@@ -1,0 +1,114 @@
+{% load static %}
+{% include "Admin/header.html" %}
+<script src="{% static 'jquery.min.js' %}"></script>
+<script>
+$(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRFToken": '{{ csrf_token }}'
+        }
+    });
+
+    $('#role').change(function () {
+        var did = $(this).val();
+
+       $.ajax({
+    type: "POST",
+    url: '{% url "fillemp" %}',
+    data: { did: did },
+    dataType: "json",
+    success: function (data) {
+        $('#data').empty();
+        $.each(data.employee_data, function(index, employee) {
+            var tr = $('<tr>');
+            var td1 = $('<td>').text(index + 1);
+            var td2 = $('<td>').text(employee.empname);
+            var td3 = $('<td>').text(employee.empcode);
+            var td4 = $('<td>').text(employee.email);
+            var td5 = $('<td>').text(employee.phone);
+            tr.append(td1, td2, td3, td4,td5);
+            $('#data').append(tr);
+        });
+    }
+});
+
+
+
+    });
+});
+
+
+</script>
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "Admin/sidebar.html" %}
+
+            <div class="col-md-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                         <h1 class="card-title" style="font-size: 50px;
+                            font-weight: 600;
+                            background-image: linear-gradient(to left, #553c9a, #b393d3);
+                            color: transparent;
+                            background-clip: text;
+                            -webkit-background-clip: text;">
+                             <br><br>Get Role Wise Report</h1>
+                    <h6 class="card-title">Select Role </h6>
+                  <p class="card-description">
+
+                  </p>
+
+<form action="{% url 'export_excel_sortemp' %}" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+
+                <select name="role" id="role" class="form-control" style="width: 500px;">
+                    <option selected>---Select a Role---</option>
+                    <option>Project Manager</option>
+                     <option>Employee</option>
+                </select>
+
+            </div>
+        </div>
+
+    </div>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-md-end">
+            <input type="submit" value="Export Excel" class="btn btn-primary" style="margin-bottom:10px;">
+
+    </div>
+          <div class="table-responsive">
+                <table class="display expandable-table " style="width: 85%;">
+                    <thead>
+                        <tr>
+                            <th>SlNo.</th>
+                            <th>Employee Name</th>
+                            <th>Employee Code</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+                    </tbody>
+                </table>
+                </div>
+
+</form>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+{% include "Admin/footer.html" %}

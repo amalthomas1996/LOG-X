@@ -1,0 +1,57 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "ProjectManager/sidebar.html" %}
+
+            <div class="col-md-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                         <h1 class="card-title" style="font-size: 50px;
+                            font-weight: 600;
+                            background-image: linear-gradient(to left, #553c9a, #b393d3);
+                            color: transparent;
+                            background-clip: text;
+                            -webkit-background-clip: text;">
+                             <br><br>Get Report</h1>
+                    <h6 class="card-title">Select Date </h6>
+                  <p class="card-description">
+
+                  </p>
+
+<form action="{% url 'export_excelpr' %}" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                <label >From Date</label>
+                <input type="date" name="fdate" class="form-control">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                <label >To Date</label>
+                <input type="date" name="tdate" class="form-control">
+
+            </div>
+        </div>
+    </div>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-md-end">
+            <input type="submit" value="Export Excel" class="btn btn-primary">
+    </div>
+</form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+{% include "ProjectManager/footer.html" %}

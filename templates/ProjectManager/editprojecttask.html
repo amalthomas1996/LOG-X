@@ -1,0 +1,79 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "ProjectManager/sidebar.html" %}
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>EDIT PROJECT TASK</h5>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'editprojecttask' id=protask.projecttaskid %}">
+                        {% csrf_token %}
+
+                         <div class="form-group">
+                      <label >Select Project Activity</label>
+                        <select  name="projectactivity" class="form-control">
+
+                        {% for a in act %}
+                        <option value="{{a.activityid}}">{{ a.activityname }}</option>
+                        {% endfor %}
+                      </select>
+                         </div>
+                        <div class="form-group">
+                      <label >Select Project</label>
+                        <select  name="project" class="form-control">
+                      <option selected>{{protask.projectid.projectname}}</option>
+                        {% for p in pro %}
+                        <option selected value="{{p.projectid}}">{{ p.projectname }}</option>
+                        {% endfor %}
+                      </select>
+                        </div>
+                      <div class="form-group">
+                      <label >Team Description</label>
+                      <input type="text" class="form-control"  placeholder="Description" name="description" value="{{protask.description}}">
+                    </div>
+                    <div class="form-group">
+                      <label >Starting Date</label>
+                      <input type="date" class="form-control" name="startingdate" value="{{protask.startingdate|date:"Y-m-d"}}">
+                    </div>
+                    <div class="form-group">
+                      <label >Ending Date</label>
+                      <input type="date" class="form-control" name="enddate" value="{{protask.enddate|date:"Y-m-d"}}">
+                    </div>
+
+                      <select class="form-control" name="status">
+                                    <option>{{protask.status}}"</option>
+                                    <option>Pending</option>
+                                    <option>Completed</option>
+
+
+
+                                </select>
+
+
+
+                    <div class="form-check form-check-flat form-check-primary">
+
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+
+{% include "ProjectManager/footer.html" %}

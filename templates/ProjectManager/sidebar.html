@@ -1,0 +1,79 @@
+  <!-- partial:partials/_sidebar.html -->
+  {% load static %}
+
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="margin-top: 40px;">
+
+        <ul class="nav">
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'pmindex' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'addteam' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">CREATE NEW TEAM</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewteam' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">VIEW TEAMS</span>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'addprojecttask' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">ADD PROJECT TASK</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewprojecttask' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">VIEW PROJECT TASK</span>
+            </a>
+          </li>
+              <li class="nav-item">
+            <a class="nav-link" href="{% url 'empassign' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">ASSIGN EMPLOYEE</span>
+            </a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewempassign' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">VIEW ASSIGN EMPLOYEE</span>
+            </a>
+          </li>
+
+
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#one" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">REPORTS</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="one">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'prststus' %}">Project Status</a></li>
+
+
+
+              </ul>
+            </div>
+            </li>
+
+        </ul>
+      </nav>
+      <!-- partial -->

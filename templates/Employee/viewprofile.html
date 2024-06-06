@@ -1,0 +1,111 @@
+{% load static %}
+{% include "Employee/sidebar.html" %}
+{% include "Employee/header.html" %}
+<div class="main-panel">
+  <div class="content-wrapper">
+            <div class="page-header">
+<div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Your profile</h4>
+                    <br>
+                    <form class="form-sample" method="post"  action="{% url 'viewprofile' %}">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Full Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" name="name" value="{{emp.empname}}" readonly/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Employee Code</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" name="empcode" value="{{emp.empcode}}" readonly/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Role</label>
+                            <div class="col-sm-9">
+                           <input type="text" class="form-control" name="role" value="{{emp.role}}" readonly/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                              <input class="form-control" placeholder="" name="emial" value="{{emp.email}}" readonly/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Phone</label>
+                            <div class="col-sm-9">
+                            <input class="form-control" placeholder="" name="phone" value="{{emp.phone}}" readonly/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Photo</label>
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <img src="{{ emp.photo.url }}" alt="Employee Photo" style="width:70px;height:70px;"></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Team Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" name="teamname" value="{{emp.teamid.teamname}}" readonly/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </form>
+                    <a href="{% url 'empindex'  %}"><button type="submit" class="btn btn-primary mr-2" > Go Back </button></a>
+
+                      <a href="{% url 'changeuserpass'  %}"><button type="submit" class="btn btn-primary mr-2" >Change Username and Password</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+  </div>
+</div>
+<script src="{% static 'Emp/assets/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'Emp/assets/vendors/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.fillbetween.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.pie.js' %}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'Emp/assets/js/off-canvas.js' %}"></script>
+    <script src="{% static 'Emp/assets/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'Emp/assets/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{% static 'Emp/assets/js/dashboard.js' %}"></script>

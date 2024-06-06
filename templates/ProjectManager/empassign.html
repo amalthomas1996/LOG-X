@@ -1,0 +1,85 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "ProjectManager/sidebar.html" %}
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>ASSIGN EMPLOYEE</h5>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                      <label >Select Project </label>
+                        <select  name="project" class="form-control">
+                      <option selected>Choose Project </option>
+                        {% for p in proj %}
+                        <option value="{{p.empid__projectid__projectid}}">{{ p.empid__projectid__projectname }}</option>
+                        {% endfor %}
+                      </select>
+                         </div>
+
+                         <div class="form-group">
+                      <label >Select Project Activity</label>
+                        <select  name="projecttask" class="form-control">
+                      <option selected>Choose Project Task</option>
+                        {% for pt in pro %}
+                        <option value="{{pt.projecttaskid}}">{{ pt.activityid.activityname }}</option>
+                        {% endfor %}
+                      </select>
+                         </div>
+                        <div class="form-group">
+                      <label >Selelect Employee</label>
+                        <select  name="employee" class="form-control">
+                      <option selected>Choose Employee</option>
+                        {% for e in emp1 %}
+                        <option  value="{{e.empid}}">{{ e.empname }}</option>
+                        {% endfor %}
+                      </select>
+                        </div>
+                      <div class="form-group">
+                      <label >Selelect Team</label>
+                        <select  name="teamid" class="form-control">
+                      <option selected>Choose Team</option>
+                        {% for t in team %}
+                        <option  value="{{t.teamid}}">{{ t.description }}</option>
+                        {% endfor %}
+                      </select>
+                        </div>
+
+                    <div class="form-group">
+                      <label >Due Date</label>
+                      <input type="date" class="form-control" name="duedate">
+                    </div>
+                    <div class="form-group">
+                      <label >Status</label>
+                      <input type="text" class="form-control" name="status" value="none" disabled>
+                    </div>
+
+
+                    <div class="form-check form-check-flat form-check-primary">
+
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+
+{% include "ProjectManager/footer.html" %}

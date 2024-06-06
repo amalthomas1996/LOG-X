@@ -1,0 +1,101 @@
+{% load static %}
+{% include "Admin/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "Admin/sidebar.html" %}
+
+            <div class="col-md-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                         <h1 class="card-title" style="font-size: 50px;
+                            font-weight: 600;
+                            background-image: linear-gradient(to left, #553c9a, #b393d3);
+                            color: transparent;
+                            background-clip: text;
+                            -webkit-background-clip: text;">
+                             <br><br>Get Employee Report</h1>
+
+                  <p class="card-description">
+
+                  </p>
+            <a href="{% url 'sortempreport'  %}"><button class="btn btn-primary" style="margin-bottom:30px;">Sort Employee</button></a>
+<form action="{% url 'export_excelemp' %}" method="post">
+    {% csrf_token %}
+
+      <div class="row">
+        <div class="col-md-6 d-flex ">
+            <input type="submit" value="Export Data To Excel" class="btn btn-primary" style="margin-bottom:30px;">
+
+    </div>
+</form>
+
+                      <div class="table-responsive">
+                    <table class="table table-striped" style="width: 100%;" >
+                      <thead>
+                        <tr>
+                          <th>
+                            SlNo.
+                          </th>
+                          <th>
+                            Employee Name
+                          </th>
+                          <th>
+                            Employee Code
+                          </th>
+                          <th>
+                            Role
+                          </th>
+                          <th>
+                            Email
+                          </th>
+                            <th>
+                            Phone
+                          </th>
+                            <th>
+                            Photo
+                          </th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for e in emp_obj %}
+                        <tr>
+                          <td class="py-1">
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{e.empname}}
+                          </td>
+                          <td>
+                           {{e.empcode}}
+                          </td>
+                          <td>
+                            {{e.role}}
+                          </td>
+                          <td>
+                            {{e.email}}
+                          </td>
+                             <td>
+                            {{e.phone}}
+                          </td>
+                            <td>
+                                <img src="{{ e.photo.url }}" alt="Employee Photo" style="width:60px;height:60px;">
+                            </td>
+
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+{% include "Admin/footer.html" %}

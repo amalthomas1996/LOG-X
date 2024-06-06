@@ -1,0 +1,45 @@
+{% load static %}
+{% include "Admin/header.html" %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <br><br>
+    {% include "Admin/sidebar.html" %}
+    <div class="card">
+        <br><br>
+        <div class="card-body">
+            <br><br>
+            <div class="form-group">
+
+
+
+
+            <br>
+            <h4 class="card-title">ASSIGNED EMPLOYEE PROJECTS</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped" style="width: 85%;">
+                    <thead>
+                        <tr>
+
+                            <th>Project Name</th>
+                            <th>Project Name</th>
+
+
+                        </tr>
+                    </thead>
+                     {% for p in emp1 %}
+                    <tbody id="data">
+                    <tr>
+                    <td>{{p.empname}}</td>
+                    <td>{{p.projectid.projectname}}</td>
+                    </tr>
+                    </tbody>
+                       {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "Admin/footer.html" %}

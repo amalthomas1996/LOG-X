@@ -1,0 +1,90 @@
+{% load static %}
+{% include "Admin/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "Admin/sidebar.html" %}
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>REGISTER NEW PROJECT</h5>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post">
+                        {% csrf_token %}
+                    <div class="form-group">
+                      <label >Project Name</label>
+                      <input required type="text" class="form-control" placeholder="Project Name" name="projectname" >
+                    </div>
+                    <div class="form-group">
+                      <label >Project Description</label>
+                      <input type="text" class="form-control"  placeholder="Project Description" name="projectdesc" required>
+                    </div>
+                    <div class="form-group">
+                      <label >Estimated Cost</label>
+                      <input type="text" class="form-control"  placeholder="Estimated Cost" name="projectcost" >
+                    </div>
+                    <div class="form-group">
+                      <label >Starting Date</label>
+                      <input type="date" id="datePicker" class="form-control"  name="startingdate" required>
+                    </div>
+                    <div class="form-group">
+                      <label >Ending Date</label>
+                      <input type="date"  id="enddatePicker" class="form-control" name="enddate" required>
+                    </div>
+                    <div class="form-check form-check-flat form-check-primary">
+
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+<script>
+  const datePicker = document.getElementById("datePicker");
+  const enddatePicker = document.getElementById("enddatePicker");
+
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const yyyy = today.getFullYear();
+
+  const minDate = yyyy + '-' + mm + '-' + dd;
+  datePicker.setAttribute("min", minDate);
+
+  // Function to update minimum date of end date picker
+  function updateMinEndDate() {
+    // Get the value of the start date picker
+    const startDateValue = datePicker.value;
+
+    // Set the minimum date of the end date picker to be one day after the start date picker
+    enddatePicker.min = startDateValue;
+
+    // If the current value of the end date picker is invalid (before the minimum date), reset it
+    if (enddatePicker.value < startDateValue) {
+      enddatePicker.value = startDateValue;
+    }
+  }
+
+  // Add event listener to the start date picker to trigger the update
+  datePicker.addEventListener("change", updateMinEndDate);
+
+  // Call the function initially to set the minimum date based on the current value of the start date picker
+  updateMinEndDate();
+</script>
+
+
+
+{% include "Admin/footer.html" %}

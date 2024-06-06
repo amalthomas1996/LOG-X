@@ -1,0 +1,53 @@
+{% load static %}
+{% include "Admin/header.html" %}
+<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+ {% include "Admin/sidebar.html" %}
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>EDIT PROJECT</h5>
+                  <p class="card-description">
+                  </p>
+                  <form class="forms-sample" method="post"  action="{% url 'editproject' pro.projectid%}">
+                        {% csrf_token %}
+                    <div class="form-group">
+                      <label >Project Name</label>
+                      <input type="text" class="form-control" value="{{pro.projectname}}" name="projectname">
+                    </div>
+                    <div class="form-group">
+                      <label >Project Description</label>
+                      <input type="text" class="form-control"  value="{{pro.projectdesc}}" name="projectdesc">
+                    </div>
+                    <div class="form-group">
+                      <label >Estimated Cost</label>
+                      <input type="text" class="form-control"  value="{{pro.projectcost}}" name="projectcost">
+                    </div>
+
+                    <div class="form-group">
+                      <label >Date</label>
+                      <input type="text" class="form-control" disabled  name="startingdate" value="{{pro.projectdate}}">
+                    </div>
+                    <div class="form-group">
+                      <label >Starting Date</label>
+                      <input type="date" class="form-control"  name="startingdate" value="{{pro.startingdate}}">
+                    </div>
+                    <div class="form-group">
+                      <label >Ending Date</label>
+                      <input type="date" class="form-control"name="enddate" value="{{pro.enddate}}">
+                    </div>
+                    <div class="form-check form-check-flat form-check-primary">
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+{% include "Admin/footer.html" %}

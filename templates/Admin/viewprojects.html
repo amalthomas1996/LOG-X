@@ -1,0 +1,88 @@
+{% load static %}
+{% include "Admin/header.html" %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+<br><br>
+{% include "Admin/sidebar.html" %}
+
+              <div class="card">
+<br><br>
+                <div class="card-body">
+<br><br>
+                  <h4 class="card-title">PROJECTS</h4>
+                  <p class="card-description">
+
+                  </p>
+
+                  <div class="table-responsive">
+                    <table class="table table-striped" style="width: 85%;" >
+                      <thead>
+                        <tr>
+                          <th>
+                            SlNo.
+                          </th>
+                          <th>
+                            Project Name
+                          </th>
+                          <th>
+                            Description
+                          </th>
+                          <th>
+                            Date
+                          </th>
+                          <th>
+                            Estimated Cost
+                          </th>
+                            <th>
+                            Start Date
+                          </th>
+                            <th>
+                            End Date
+                          </th>
+                            <th>
+                                Edit
+                            </th>
+                             <th>
+                                Delete
+                            </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for p in pro_obj %}
+                        <tr>
+                          <td class="py-1">
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{p.projectname}}
+                          </td>
+                          <td>
+                           {{p.projectdesc}}
+                          </td>
+                          <td>
+                            {{p.projectdate}}
+                          </td>
+                          <td>
+                            {{p.projectcost}}
+                          </td>
+                             <td>
+                            {{p.startingdate}}
+                          </td>
+                             <td>
+                            {{p.enddate}}
+                          </td>
+                            <td>
+                                <a href="{% url 'editproject' id=p.projectid %}"><button class="btn btn-primary"> EDIT</button></a>
+                            </td>
+                             <td>
+                                <a href="{% url 'deleteproject' id=p.projectid %}"><button class="btn btn-danger"> DELETE</button></a>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% include "Admin/footer.html" %}

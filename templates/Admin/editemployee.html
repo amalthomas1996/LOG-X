@@ -1,0 +1,62 @@
+{% load static %}
+{% include "Admin/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "Admin/sidebar.html" %}
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>EDIT EMPLOYEE</h5>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" enctype="multipart/form-data" action="{% url 'editemployee' e.empid%}">
+                        {% csrf_token %}
+                    <div class="form-group">
+                      <label >Full Name</label>
+                      <input type="text" class="form-control" value="{{e.empname}}"  name="empname">
+                    </div>
+                    <div class="form-group">
+                      <label >Employee Code</label>
+                      <input type="text" class="form-control"  value="{{e.empcode}}" name="empcode">
+                    </div>
+                    <div class="form-group">
+                      <label >Employee Role</label>
+                      <select class="form-control" name="role">
+                          <option>{{e.role}}</option>
+                      <option >Project Manager</option>
+                      <option >Employee</option>
+
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label >Email</label>
+                      <input type="text" class="form-control"  value="{{e.email}}"  name="email">
+                    </div>
+                    <div class="form-group">
+                      <label >Phone</label>
+                      <input type="text" class="form-control"name="phone" value="{{e.phone}}">
+                    </div>
+
+                    <div class="form-check form-check-flat form-check-primary">
+
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+
+{% include "Admin/footer.html" %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>LOG-X</title>
+    <link rel="stylesheet" href="{% static 'Emp/assets/vendors/mdi/css/materialdesignicons.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'Emp/assets/vendors/flag-icon-css/css/flag-icon.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'Emp/assets/vendors/css/vendor.bundle.base.css' %}" />
+    <link rel="stylesheet" href="{% static 'Emp/assets/vendors/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'Emp/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'Emp/assets/css/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'Emp/assets/images/favicon.png' %}" />
+  </head>
+  <body>
+<div class="container-scroller" >
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" >
+        <div class="text-center sidebar-brand-wrapper d-flex align-items-center" style="background-color:#35374B">
+            <a class="sidebar-brand brand-logo" href="{% url 'empindex' %}"><img src="{% static 'Emp/assets/images/logo1.svg' %}" alt="logo" /></a>
+          <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img src="{% static 'Emp/assets/images/logo-mini.svg' %}" alt="logo" /></a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="{% url 'viewprofile' %}" class="nav-link">
+              <div class="nav-profile-image">
+                <img src="{{ emp.photo.url }}"  alt="profile" />
+                <span class="login-status online"></span>
+                <!--change to offline or busy as needed-->
+              </div>
+              <div class="nav-profile-text d-flex flex-column pr-3">
+                <span class="font-weight-medium mb-2">{{emp.empname}}</span>
+
+              </div>
+              <span class="badge badge-danger text-white ml-3 rounded"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'empindex' %}">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="{% url 'viewtask' %}">
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+              <span class="menu-title">Tasks</span>
+              <i class="menu-arrow"></i>
+            </a>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewprofile' %}">
+              <i class="mdi mdi-contacts menu-icon"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'idcard' %}">
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              <span class="menu-title">ID Card</span>
+            </a>
+          </li>
+
+
+
+ <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#one" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
+              <span class="menu-title">TASK REPORTS</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="one">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'tstatus' %}">Task Status</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#">Task Date</a></li>
+
+
+              </ul>
+            </div>
+            </li>
+          </li>
+        </ul>
+      </nav>
+
+

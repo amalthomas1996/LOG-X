@@ -1,0 +1,60 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "ProjectManager/sidebar.html" %}
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>EDIT TEAM</h5>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" enctype="multipart/form-data" action="{% url 'editteam' te.teamid %}">
+                        {% csrf_token %}
+                    <div class="form-group">
+                      <label >Team Name</label>
+                      <input type="text" class="form-control" value="{{te.teamname}}"  name="teamname">
+                    </div>
+                    <div class="form-group">
+                      <label >Description</label>
+                      <input type="text" class="form-control"  value="{{te.description}}" name="description">
+                    </div>
+
+                      <div class="form-group">
+                      <label >Select Project</label>
+                        <select  name="project" class="form-control">
+
+                        <option selected>Choose Project</option>
+
+                        {% for p in pro %}
+
+                        <option selected value="{{p.projectid}}">{{ p.projectname }}</option>
+                        {% endfor %}
+                      </select>
+
+
+                    </div>
+
+                    <div class="form-check form-check-flat form-check-primary">
+
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+
+{% include "ProjectManager/footer.html" %}

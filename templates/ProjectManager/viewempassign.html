@@ -1,0 +1,152 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+<script src="{% static 'jquery.min.js' %}"></script>
+<script>
+$(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRFToken": '{{ csrf_token }}'
+        }
+    });
+
+    $('#project').change(function () {
+        var did = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: '{% url "filldata" %}',
+            data: { did: did },
+            dataType: "json",
+            success: function (data) {
+                $('#data').empty();
+               $.each(data.emp_assign_data, function(index, assignment) {
+    var tr = $('<tr>');
+    var td1 = $('<td>').text(index + 1);
+    var td2 = $('<td>').text(data.project_data[0].projectname);
+    var td3 = $('<td>').text(assignment.activityname || '-');
+    var td4 = $('<td>').text(data.employee_data[0].empname);
+    var td5 = $('<td>').text(assignment.assigndate);
+    var td6 = $('<td>').text(assignment.duedate);
+    var td7 = $('<td>').text(assignment.status);
+    var td8 = $('<td>').text(assignment.rstatus);
+
+    tr.append(td1, td2, td3, td4, td5, td6, td7, td8);
+
+    // Check if rstatus is "Requested"
+    if (assignment.rstatus === "Requested") {
+        var conUrl = '../confirm/' + assignment.empassignid;
+        var td9 = $('<td>').append($('<a>').attr('href', conUrl).append($('<button>').text('Confirm').addClass('btn btn-success')));
+        var rejectUrl = '../reject/' + assignment.empassignid;
+        var td10 = $('<td>').append($('<a>').attr('href', rejectUrl).append($('<button>').text('Reject').addClass('btn btn-danger')));
+        tr.append(td9, td10);
+    }
+    else
+    {
+      //var td9 = $('<td>').append($('<a>').append($('<button>').text('Confirm').attr('aria-disabled','True').addClass('btn btn-primary ')));
+      var td9='<td><a><button class="btn btn-success  disabled" role="button" aria-disabled="true">Confirm</button>';
+      var td10 ='<td><a><button class="btn btn-danger  disabled" role="button" aria-disabled="true">Reject</button>';
+      tr.append(td9, td10);
+    }
+    var currentdate= new Date();
+    var duedate = new Date(assignment.duedate);;
+
+    var staticUrl = "{% static 'Emp/assets/images/warning.svg' %}";
+    var id=assignment.empassignid;
+
+    var mailUrl="{% url 'sendmail' 0 %}".replace(0,id);
+    if (currentdate > duedate)
+    {
+        var timediff =(duedate- currentdate);
+        var date1 = Math.ceil(timediff/ (1000 * 3600 * 24));
+        var warningText{{ forloop.counter }} = "<img src='" + staticUrl + "' style='width: 30px; height: 90px;'> <span style='color: red;'>Warning :</span>";
+        var td11 = date1 + " days Behind <a href= '"+mailUrl+"'  class='btn btn-primary' style='margin-left:10px; margin-top:10px;' >Send Mail</a>";
+
+
+        tr.append(td11);
+    }
+    else
+    {
+         var timediff =(duedate- currentdate);
+        var date1 = Math.ceil(timediff/ (1000 * 3600 * 24));
+       var warningText{{ forloop.counter }} = "<img src='" + staticUrl + "' style='width: 30px; height: 30px; margin-top:10px;''> <span style='color: red;margin-top:10px;''>Warning :</span>";
+        var td11  = warningText + " Only " + date1 + " days left";
+
+        tr.append(td11);
+    }
+    var deleteUrl = '../deleteempassign/' + assignment.empassignid;
+    var td12 = $('<td>').append($('<a>').attr('href', deleteUrl).append($('<button>').text('Delete').addClass('btn btn-warning')));
+    //tr.append(td12);
+
+    $('#data').append(tr);
+});
+
+            }
+        });
+    });
+});
+
+
+</script>
+<div class="col-lg-12 grid-margin stretch-card">
+    <br><br>
+    {% include "ProjectManager/sidebar.html" %}
+    <div class="card">
+        <br><br>
+        <div class="card-body">
+            <br><br>
+            <div class="form-group">
+                <h5 class="card-title">SELECT PROJECT</h5>
+                <select name="project" id="project" class="form-control" style="width: 500px;">
+                    <option selected>---SELECT A PROJECT---</option>
+                    {% for p in pro %}
+                    <option value="{{ p.empid__projectid__projectid }}">{{ p.empid__projectid__projectname }}</option>
+                    {% endfor %}
+                    {% for p in pdata %}
+                    <option value="{{ p.projectid.projectid }}">{{ p.projectid.projectname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <h4 class="card-title">ASSIGNED EMPLOYEE PROJECTS</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class=" display expandable-table" style="width: 85%;">
+                    <thead>
+                        <tr>
+                            <th>SlNo.</th>
+                            <th>Project Name</th>
+                            <th>Project Task</th>
+                            <th>Employee name</th>
+                            <th>Assigned Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Request</th>
+                            <th>Confirm</th>
+                            <th>Reject</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'jquery.min.js' %}"></script>
+<script>
+    {% for e in emp1 %}
+       {% if e.status != 'Completed' %}
+        var dueDate{{ forloop.counter }} = document.getElementsByClassName("due-date")[{{ forloop.counter0 }}].value;
+        var duedate{{ forloop.counter }} = new Date(dueDate{{ forloop.counter }});
+        var currentdate{{ forloop.counter }} = new Date();
+        var timediff{{ forloop.counter }} =(duedate{{ forloop.counter }}.getTime()- currentdate{{ forloop.counter }}.getTime());
+        var date{{ forloop.counter }} = Math.ceil(timediff{{ forloop.counter }} / (1000 * 3600 * 24));
+        var warningText{{ forloop.counter }} = "<img src='" + staticUrl + "'> <span style='color: red;'>Warning :</span>";
+        document.getElementById("task{{ forloop.counter }}").innerHTML = warningText{{ forloop.counter }} + " Only " + date{{ forloop.counter }} + " days left";
+         {% endif %}
+    {% endfor %}
+</script>
+
+{% include "ProjectManager/footer.html" %}

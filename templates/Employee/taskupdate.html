@@ -1,0 +1,107 @@
+{% load static %}
+{% include "Employee/sidebar.html" %}
+{% include "Employee/header.html" %}
+<div class="main-panel">
+  <div class="content-wrapper">
+            <div class="page-header">
+<div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Task Deatils</h4>
+                    <br>
+
+                        <form class="form-sample" method="post"  action="{% url 'taskupdate' id=assigndata.empassignid %}">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Project Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" name="name" value="{{assigndata.projecttaskid.activityid.activityname}}" disabled/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                              <input type="textarea" class="form-control" name="empcode" value="{{assigndata.projecttaskid.description}}" disabled/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Assigned Date</label>
+                            <div class="col-sm-9">
+                           <input type="text" class="form-control" name="role" value="{{assigndata.assigndate}}" disabled/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Due Date</label>
+                            <div class="col-sm-9">
+                              <input class="form-control" placeholder="" name="emial" value="{{assigndata.duedate}}" disabled/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Status</label>
+                            <div class="col-sm-9">
+
+                                <select class="form-control" name="status">
+                                    <option>{{assigndata.status}}</option>
+                                    <option>0-10 %</option>
+                                    <option>10-20 %</option>
+                                    <option>20-30 %</option>
+                                    <option>30-40 %</option>
+                                    <option>40-50 %</option>
+                                    <option>50-60 %</option>
+                                    <option>60-70 %</option>
+                                    <option>70-80 %</option>
+                                    <option>80-90 %</option>
+                                    <option>Completed</option>
+
+
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                            <br>
+                        <button type="submit" class="btn btn-primary mr-2" > SAVE </button>
+
+                    </form>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+  </div>
+</div>
+<script src="{% static 'Emp/assets/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'Emp/assets/vendors/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.fillbetween.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'Emp/assets/vendors/flot/jquery.flot.pie.js' %}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'Emp/assets/js/off-canvas.js' %}"></script>
+    <script src="{% static 'Emp/assets/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'Emp/assets/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{% static 'Emp/assets/js/dashboard.js' %}"></script>

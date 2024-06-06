@@ -1,0 +1,105 @@
+  <!-- partial:partials/_sidebar.html -->
+  {% load static %}
+
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="margin-top: 40px;">
+
+        <ul class="nav">
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'addproject' %}">
+
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">NEW PROJECT</span>
+            </a>
+          </li>
+
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewprojects' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">VIEW PROJECTS</span>
+            </a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'addemployee' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title"> ADD EMPLOYEE</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewemployee' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">VIEW EMPLOYEES</span>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'projectassign' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">PROJECT ASSIGN</span>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewprojectstatus' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">PROJECT STATUS</span>
+            </a>
+           </li>
+
+           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#one" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">REPORTS</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="one">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'yearlyreport' %}">Project Status</a></li>
+                 <li class="nav-item"> <a class="nav-link" href="{% url 'empreport' %}">Empolyee Details</a></li>
+
+
+              </ul>
+            </div>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'predictionspage' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">PREDICTION</span>
+            </a>
+           </li>
+
+        </ul>
+
+      </nav>
+      <!-- partial -->
+
+  <script src="{% static 'Admin/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'Admin/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'Admin/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'Admin/js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'Admin/js/off-canvas.js' %}"></script>
+  <script src="{% static 'Admin/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'Admin/js/template.js' %}"></script>
+  <script src="{% static 'Admin/js/settings.js' %}"></script>
+  <script src="{% static 'Admin/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'Admin/js/dashboard.js' %}"></script>
+  <script src="{% static 'Admin/js/Chart.roundedBarCharts.js' %}"></script>

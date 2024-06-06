@@ -1,0 +1,84 @@
+{% load static %}
+{% include "Employee/sidebar.html" %}
+{% include "Employee/header.html" %}
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+              
+
+            <div class="col-md-8 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                         <h1 class="card-title" style="font-size: 50px;
+                            font-weight: 600;
+                            background-image: linear-gradient(to left, #553c9a, #b393d3);
+                            color: transparent;
+                            background-clip: text;
+                            -webkit-background-clip: text;">
+                             <br><br>Get Report</h1>
+                    <h6 class="card-title">Select Assigned Date </h6>
+                  <p class="card-description">
+
+                  </p>
+
+<form action="{% url 'export_excelt' %}" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                <label >From Date</label>
+                <input type="date" name="fdate" class="form-control">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                <label >To Date</label>
+                <input type="date" name="tdate" class="form-control">
+                <input type="text" name="id" class="form-control" value="{{emp.empid}}" hidden>
+
+
+            </div>
+        </div>
+    </div>
+      <div class="row">
+        <div class="col-md-6 d-flex justify-content-md-end">
+            <input type="submit" value="Export Excel" class="btn btn-primary" style="margin-bottom:30px;">
+    </div>
+</form>
+
+                    <div class="table-responsive">
+                <table class="table table-striped" style="width:95%">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Activity Name</th>
+                        <th>Project</th>
+                        <th>Assigned Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for e in emp1 %}
+                    <tr>
+                        <td>{{e.projecttaskid.activityid.activityname}}</td>
+                        <td>{{e.projectid.projectname}}</td>
+                        <td>{{e.assigndate}}</td>
+                        <td>{{e.duedate}}</td>
+                        <td>{{e.status}}</td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+{% include "Employee/footer.html" %}

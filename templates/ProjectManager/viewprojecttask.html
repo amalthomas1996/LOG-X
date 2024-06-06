@@ -1,0 +1,89 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+<br><br>
+{% include "ProjectManager/sidebar.html" %}
+
+              <div class="card">
+                    <br><br>
+                <div class="card-body">
+                    <br><br>
+                  <h4 class="card-title">PROJECT TASK</h4>
+                  <p class="card-description">
+
+                  </p>
+
+                  <div class="table-responsive">
+                    <table class=" display expandable-table" style="width: 85%;" >
+                      <thead>
+                        <tr>
+                          <th>
+                            SlNo.
+                          </th>
+                          <th>
+                              Activity
+                          </th>
+                          <th>
+                            Project
+                          </th>
+                          <th>
+                            Description
+                          </th>
+                            <th>
+                                Starting Date
+                            </th>
+                            <th>
+                                Ending Date
+                            </th>
+                             <th>
+                                Status
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for t in protask %}
+                        <tr>
+                          <td class="py-1">
+                            {{forloop.counter}}
+                          </td>
+                          <td>
+                            {{t.activityid.activityname}}
+                          </td>
+                          <td>
+                           {{t.projectid.projectname}}
+                          </td>
+                          <td>
+                            {{t.description}}
+                          </td>
+                             <td>
+                            {{t.startingdate}}
+                          </td>
+                             <td>
+                            {{t.enddate}}
+                          </td>
+                             <td>
+                            {{t.status}}
+                          </td>
+
+                            <td>
+                                <a href="{% url 'editprojecttask' id=t.projecttaskid %}"><button class="btn btn-primary"> EDIT</button></a>
+                            </td>
+                             <td>
+                                <a href="{% url 'deleteprojecttask' id=t.projecttaskid %}"><button class="btn btn-danger"> DELETE</button></a>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% include "ProjectManager/footer.html" %}

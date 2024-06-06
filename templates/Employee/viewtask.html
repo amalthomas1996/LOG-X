@@ -1,0 +1,63 @@
+{% load static %}
+{% include "Employee/sidebar.html" %}
+{% include "Employee/header.html" %}
+<script>
+    var staticUrl = "{% static 'Emp/assets/images/warning.svg' %}";
+</script>
+<div class="col-lg-11 grid-margin stretch-card" style="margin-top:80px;">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title" style="font-size:1.5rem;">Your Tasks</h1>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped" style="width:95%">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Activity Name</th>
+                        <th>Project</th>
+                        <th>Assigned Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Warning</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for e in emp1 %}
+                    <tr>
+                        <td>{{e.projecttaskid.activityid.activityname}}</td>
+                        <td>{{e.projectid.projectname}}</td>
+                        <td>{{e.assigndate}}</td>
+                        <td>{{e.duedate}}</td>
+                        <td>{{e.status}} &nbsp;<span class="text-danger">({{e.rstatus}}) </span> </td>
+                        <td>
+                            <a href="{% url 'taskupdate' id=e.empassignid %}">
+                                <button class="btn btn-primary">View</button>
+                            </a>
+                        </td>
+                        <td id="task{{ forloop.counter }}"></td>
+                        <input type="hidden" class="due-date" value="{{ e.duedate }}">
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "Employee/footer.html" %}
+<script src="{% static 'jquery.min.js' %}"></script>
+<script>
+    {% for e in emp1 %}
+       {% if e.status != 'Completed' %}
+        var dueDate{{ forloop.counter }} = document.getElementsByClassName("due-date")[{{ forloop.counter0 }}].value;
+        var duedate{{ forloop.counter }} = new Date(dueDate{{ forloop.counter }});
+        var currentdate{{ forloop.counter }} = new Date();
+        var timediff{{ forloop.counter }} =(duedate{{ forloop.counter }}.getTime()- currentdate{{ forloop.counter }}.getTime());
+        var date{{ forloop.counter }} = Math.ceil(timediff{{ forloop.counter }} / (1000 * 3600 * 24));
+        var warningText{{ forloop.counter }} = "<img src='" + staticUrl + "'> <span style='color: red;'>Warning :</span>";
+        document.getElementById("task{{ forloop.counter }}").innerHTML = warningText{{ forloop.counter }} + " Only " + date{{ forloop.counter }} + " days left";
+         {% endif %}
+    {% endfor %}
+</script>

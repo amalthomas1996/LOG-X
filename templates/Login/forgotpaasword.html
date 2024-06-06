@@ -1,0 +1,71 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'Login/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'Login/css/owl.carousel.min.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'Login/css/bootstrap.min.css' %}">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'Login/css/style.css' %}">
+
+    <title>Login to LOG-X</title>
+  </head>
+  <body>
+
+
+
+  <div class="content" style="background-color:#5F5D9C; height: 100vh;" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{% static 'Login/images/one.svg' %}" alt="Image" class="img-fluid" >
+        </div>
+        <div class="col-md-6 contents" >
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3 style="color:#1B1A55">Reset Your Password </h3>
+                <img src="{% static 'Emp/assets/images/logo1.svg' %}" alt="logo" style="height:100px;" />
+            </div>
+            <form action="#" method="post">
+              {% csrf_token %}
+              <div class="form-group first">
+                <label for="username"></label>
+                <input type="text" class="form-control" id="username" placeholder="Email Id" name="email">
+
+              </div>
+              <br>
+                  <p>Please enter your Registered Email ID and click on the "SEND MAIL".<br>We will send you a new password.Please use the Password to login and change the password ASAP</p>
+              <br>
+
+              <br>
+
+              <input type="submit" value="SEND MAIL" class="btn btn-block btn-primary">
+
+
+            </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    <script src="{% static 'Login/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'Login/js/popper.min.js' %}"></script>
+    <script src="{% static 'Login/js/bootstrap.min.js' %}"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

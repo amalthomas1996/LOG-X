@@ -1,0 +1,55 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+
+
+<div class="main-panel">
+
+        <div class="content-wrapper">
+
+          <div class="row">
+
+ {% include "ProjectManager/sidebar.html" %}
+
+            <div class="col-md-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><br><br>SEND MAIL</h5>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample" method="post" enctype="multipart/form-data" action="{% url 'sendmail' ea.empassignid %}">
+                        {% csrf_token %}
+                    <div class="form-group">
+                      <label >Project Name</label>
+                      <input type="text" class="form-control" value="{{ea.projectid.projectname}}"  name="projectname" style="width:50%;">
+                    </div>
+                    <div class="form-group">
+                      <label >Project Task</label>
+                      <input type="text" class="form-control"  value="{{ea.projecttaskid.description}}" name="projecttask" style="width:50%;">
+                    </div>
+                      <div class="form-group">
+                      <label >Due Date</label>
+                      <input type="text" class="form-control"  value="{{ea.duedate}}" name="duedate" style="width:50%;">
+                    </div>
+                      <div class="form-group">
+                      <label >Message</label>
+                          <textarea class="form-control"   name="message" style="width:50%;height:10rem;" placeholder="Write The Meassage Here......."></textarea>
+                    </div>
+                      <input value="{{ea.empid.empid}}" hidden name="empid">
+
+
+                    <div class="form-check form-check-flat form-check-primary">
+
+                      <br>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Send Mail</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+
+{% include "ProjectManager/footer.html" %}

@@ -1,0 +1,45 @@
+{% load static %}
+{% include "ProjectManager/header.html" %}
+<div class="col-md-6 grid-margin stretch-card">
+<br><br>
+    {% include "ProjectManager/sidebar.html" %}
+    <br>
+              <div class="card" style="margin-top:100px">
+                <div class="card-body">
+                  <h4 class="card-title">Profile</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label >Name</label>
+                      <input type="text" class="form-control"  placeholder="Emp name" value="{{ emp.empname }}">
+                    </div>
+                    <div class="form-group">
+                      <label >Emp Code</label>
+                      <input type="text" class="form-control"  placeholder="Email" value="{{ emp.empcode }}">
+                    </div>
+                    <div class="form-group">
+                      <label >Email</label>
+                      <input type="text" class="form-control"  placeholder="Password" value="{{ emp.email }}">
+                    </div>
+                    <div class="form-group">
+                      <label >Phone</label>
+                      <input type="text" class="form-control"  placeholder="Password" value="{{ emp.phone }}">
+                    </div>
+                    <div class="form-group"  >
+                      <label >Photo</label><br>
+                      <img src="{{ emp.photo.url }}" style="border-radius: 50%;">
+                    </div>
+                    <div class="form-check form-check-flat form-check-primary">
+
+                    </div>
+
+
+                  </form>
+                   <a href="{% url 'pmindex' %}"><button type="submit" class="btn btn-primary mr-2" > Go Back </button></a>
+                  <a href="{% url 'cup' %}"><button type="submit" class="btn btn-primary mr-2" > Change Username And password </button></a>
+                </div>
+              </div>
+            </div>
+{% include "ProjectManager/footer.html" %}
